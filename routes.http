@@ -1,0 +1,17 @@
+GET  http://localhost:9191/posts/
+
+
+###
+
+DELETE http://localhost:9191/posts/6346b0662f8ec6ee90c926ed
+###
+POST http://localhost:9191/posts
+Content-Type: application/json
+
+{
+    "title": "m1 is really challenging",
+    "contents": "m1 is really challenging m1 is really challenging",
+    "email" : "wpsrikanth@gmail.com",
+    "category" : "misc",
+    "name": "not"
+}
