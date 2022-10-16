@@ -4,7 +4,7 @@ const Post = require("../models/post");
 
 router.get("/", async (req, res) => {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().sort({_id:-1});
     res.json(posts);
   } catch (e) {
     res.status(500).json({ message: e.message });
