@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const postSchema = new mongoose.Schema({
+const postSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -26,5 +27,11 @@ const postSchema = new mongoose.Schema({
     type: Date,
     default: () => new Date(),
   },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ]
 });
 module.exports = mongoose.model("Post", postSchema);

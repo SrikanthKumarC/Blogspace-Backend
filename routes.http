@@ -1,16 +1,25 @@
-GET  http://localhost:9191/posts/
+GET  http://localhost:9191/posts/6353d848d92855877fef791b/
 
 
 ###
 
-DELETE http://localhost:9191/posts/6346b0662f8ec6ee90c926ed
-###
-POST http://localhost:9191/posts
+POST http://localhost:9191/posts/6353e113418155df6e2587ed/comment
 Content-Type: application/json
 
 {
-    "title": "m1 is really challenging",
-    "contents": "m1 is really challenging m1 is really challenging",
+    "comment": "Wow This is really cool for the reply mate!"
+}
+
+###
+
+DELETE http://localhost:9191/posts/6353e0bb2945829f016b826b
+###
+POST http://localhost:9191/posts/
+Content-Type: application/json
+
+{
+    "title": "1sammple1",
+    "contents": "1sample1 f m1 is really challenging",
     "email" : "wpsrikanth@gmail.com",
     "category" : "misc",
     "name": "not"
