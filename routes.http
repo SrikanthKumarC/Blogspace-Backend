@@ -1,25 +1,25 @@
-GET  http://localhost:9191/posts/6353d848d92855877fef791b/
+GET  http://localhost:9191/posts/6354e1bd5942f8d1bffe7d19/comments
 
 
 ###
 
-POST http://localhost:9191/posts/6353e113418155df6e2587ed/comment
+POST http://localhost:9191/posts/6354e1bd5942f8d1bffe7d19/comment
 Content-Type: application/json
 
 {
-    "comment": "Wow This is really cool for the reply mate!"
+    "comment": "23Oct is cool"
 }
 
 ###
 
-DELETE http://localhost:9191/posts/6353e0bb2945829f016b826b
+DELETE http://localhost:9191/posts/6354e155182ad57a8f52b885
 ###
 POST http://localhost:9191/posts/
 Content-Type: application/json
 
 {
-    "title": "1sammple1",
-    "contents": "1sample1 f m1 is really challenging",
+    "title": "23Oct",
+    "contents": "23 Oct f m1 is really challenging",
     "email" : "wpsrikanth@gmail.com",
     "category" : "misc",
     "name": "not"

@@ -5,10 +5,11 @@ let CommentSchema = new Schema ({
     comment: {
         type: String,
     },
-    post: {
+    page: {
         type: Schema.Types.ObjectId,
-        ref: "Post"
+        ref: "post"
     }
+    
 })
 
 module.exports = mongoose.model("Comment", CommentSchema)

@@ -12,18 +12,36 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/:id/comment", async (req, res) => {
+// router.post("/:id/comment", async (req, res) => {
 
-    const comt = new Comment({
+//     const comt = new Comment({
+//       comment: req.body.comment,
+//     });
+//     const post = await Post.findById(req.params.id).populate("comments");
+//     comt.post = post;
+//     await comt.save();
+//     post.comments.push(comt);
+//     await post.save();
+//     res.status(201).json(comt)
+
+// });
+
+// post new comment route
+router.post("/:id/comment", getPost, async (req, res) => {
+  try {
+    const comment = new Comment({
       comment: req.body.comment,
     });
     const post = await Post.findById(req.params.id);
-    comt.post = post;
-    await comt.save();
-    post.comments.push(comt);
+    // reference the post in the comment
+    comment.page = post;
+    await comment.save();
+    post.comments.push(comment);
     await post.save();
-    res.status(201).json(comt)
-
+    res.status(201).json(comment);
+  } catch (e) {
+    res.status(400).json({ message: e.message });
+  }
 });
 
 //get single post
@@ -39,7 +57,7 @@ router.get("/:id", getPost, (req, res) => {
 router.get('/:id/comments', async (req, res) => {
   try {
     const comments = await Post.findById(req.params.id).populate('comments')
-    res.json(comments)
+    res.json(comments.comments)
   }catch (e) {
     res.status(500).json({ message: e.message });
   }
