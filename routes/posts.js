@@ -129,6 +129,21 @@ router.delete("/:id", getPost, async (req, res) => {
   }
 });
 
+//delete comment
+router.delete("/:id/comment/:commentId", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    const comment = await Comment.findById(req.params.commentId);
+    await comment.remove();
+    post.comments.pull(comment);
+    await post.save();
+    res.json({ message: "deleted comment" });
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+});
+
+
 async function getPost(req, res, next) {
   let post;
   try {
