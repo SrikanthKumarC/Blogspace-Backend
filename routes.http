@@ -1,13 +1,15 @@
-GET  http://localhost:9191/posts/6354e1bd5942f8d1bffe7d19/comments
-
+GET  http://localhost:9191/posts/6350f09c7ba9e0a43333a761/comments
 
 ###
 
-POST http://localhost:9191/posts/6354e1bd5942f8d1bffe7d19/comment
+POST http://localhost:9191/posts/6350f09c7ba9e0a43333a761/comment
 Content-Type: application/json
 
 {
-    "comment": "23Oct is cool"
+    "comment": "A commnet for a post",
+    "name": "Srikanth Kumar",
+     "email": "wpsrikanth@gmail.com",
+    "image": "http://www.gravatar.com/avatar/2c4d15e5f863923c0f8dab3b1942ee39"
 }
 
 ###

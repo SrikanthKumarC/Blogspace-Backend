@@ -31,6 +31,9 @@ router.post("/:id/comment", getPost, async (req, res) => {
   try {
     const comment = new Comment({
       comment: req.body.comment,
+      name: req.body.name,
+      email: req.body.email,
+      image: req.body.image,
     });
     const post = await Post.findById(req.params.id);
     // reference the post in the comment
