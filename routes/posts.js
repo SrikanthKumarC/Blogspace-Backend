@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+// const Image = require("../models/image");
+
 
 router.get("/", async (req, res) => {
   try {
@@ -12,19 +14,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.post("/:id/comment", async (req, res) => {
-
-//     const comt = new Comment({
-//       comment: req.body.comment,
-//     });
-//     const post = await Post.findById(req.params.id).populate("comments");
-//     comt.post = post;
-//     await comt.save();
-//     post.comments.push(comt);
-//     await post.save();
-//     res.status(201).json(comt)
-
-// });
 
 // post new comment route
 router.post("/:id/comment", getPost, async (req, res) => {
@@ -129,6 +118,9 @@ router.delete("/:id", getPost, async (req, res) => {
   }
 });
 
+
+
+
 //delete comment
 router.delete("/:id/comment/:commentId", async (req, res) => {
   try {
@@ -157,4 +149,13 @@ async function getPost(req, res, next) {
   res.post = post;
   next();
 }
+
+
+// // add images routes
+// router.post("/image", async (req, res) => {
+//   const image = new Image({
+//     image: req.body.image,
+//   });
+// });
+
 module.exports = router;
