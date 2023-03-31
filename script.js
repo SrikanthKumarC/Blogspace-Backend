@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 var cors = require('cors')
 var multer  = require('multer')
 
-mongoose.connect('mongodb+srv://blogspace:blogspace@blogspace.q2wx0rx.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://blogspace:blogspace@blogspace.q2wx0rx.mongodb.net/?retryWrites=true&w=majority?directConnection=true')
 app.use(cors())
 
 const db = mongoose.connection
