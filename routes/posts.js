@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 
 
 // post new comment route
-router.post("/:id/comment", getPost, async (req, res) => {
+router.post("/comment/:id/comment", getPost, async (req, res) => {
   try {
     const comment = new Comment({
       comment: req.body.comment,
@@ -37,7 +37,7 @@ router.post("/:id/comment", getPost, async (req, res) => {
 });
 
 //get single post
-router.get("/:id", getPost, (req, res) => {
+router.get("/singlePost/:id", getPost, (req, res) => {
   //try to get post and log error if there is one
   try {
     res.json(res.post);
@@ -45,8 +45,8 @@ router.get("/:id", getPost, (req, res) => {
     res.status(500).json({ message: e.message });
   }
 });
-
-router.get('/:id/comments', async (req, res) => {
+// get all comments for a single post
+router.get('/comment/:id/comments', async (req, res) => {
   try {
     const comments = await Post.findById(req.params.id).populate('comments')
     res.json(comments.comments)
@@ -55,7 +55,8 @@ router.get('/:id/comments', async (req, res) => {
   }
 })
 
-router.get("/:category", async (req, res) => {
+// get category posts given category
+router.get("/category/:category", async (req, res) => {
   try {
     const categoryPosts = await Post.find({ category: req.params.category });
     res.json(categoryPosts);
@@ -65,14 +66,14 @@ router.get("/:category", async (req, res) => {
 });
 
 //get one
-router.get("/:id", async (req, res) => {
-  try {
-    const posts = await Post.findById(req.params.id);
-    res.json(posts);
-  } catch (e) {
-    res.status(500).json({ message: e.message });
-  }
-});
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const posts = await Post.findById(req.params.id);
+//     res.json(posts);
+//   } catch (e) {
+//     res.status(500).json({ message: e.message });
+//   }
+// });
 
 // SETTERS
 router.post("/", async (req, res) => {
@@ -91,7 +92,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.patch("/:id", getPost, async (req, res) => {
+router.patch("/singlePost/:id", getPost, async (req, res) => {
   if (req.body.title != null) {
     res.post.title = req.body.title;
   }
@@ -122,7 +123,7 @@ router.delete("/:id", getPost, async (req, res) => {
 
 
 //delete comment
-router.delete("/:id/comment/:commentId", async (req, res) => {
+router.delete("comment/:id/comment/:commentId", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     const comment = await Comment.findById(req.params.commentId);

@@ -1,4 +1,8 @@
-GET  http://localhost:9191/posts/6350f09c7ba9e0a43333a761/comments
+GET  http://localhost:9191/posts/comment/645006555e23a95ab83cf646/comments
+
+### 
+
+GET  http://localhost:9191/posts
 
 ###
 
