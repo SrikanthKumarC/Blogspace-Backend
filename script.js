@@ -3,8 +3,8 @@ const app = express()
 const mongoose = require('mongoose')
 var cors = require('cors')
 var multer  = require('multer')
-
-mongoose.connect('mongodb+srv://srikanth:CKjiU8pBgJk5t8fi@blogspace.q2wx0rx.mongodb.net/?retryWrites=true&w=majority?directConnection=true')
+//mongodb+srv://srikanth:CKjiU8pBgJk5t8fi@blogspace.q2wx0rx.mongodb.net/?retryWrites=true&w=majority?directConnection=true
+mongoose.connect('mongodb+srv://srikanth:CKjiU8pBgJk5t8fi@blogspace.q2wx0rx.mongodb.net/?retryWrites=true?directConnection=true')
 app.use(cors())
 
 const db = mongoose.connection
