@@ -123,7 +123,7 @@ router.delete("/delete/:id", getPost, async (req, res) => {
 
 
 //delete comment
-router.delete("comment/:id/comment/:commentId", async (req, res) => {
+router.delete("/comment/:id/comment/:commentId", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     const comment = await Comment.findById(req.params.commentId);
