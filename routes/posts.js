@@ -110,7 +110,7 @@ router.patch("/singlePost/:id", getPost, async (req, res) => {
   }
 });
 
-router.delete("/:id", getPost, async (req, res) => {
+router.delete("/delete/:id", getPost, async (req, res) => {
   try {
     await res.post.remove();
     res.json({ message: "deleted post" });
