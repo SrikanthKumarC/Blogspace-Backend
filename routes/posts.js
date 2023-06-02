@@ -4,7 +4,6 @@ const Post = require("../models/post");
 const Comment = require("../models/comment");
 // const Image = require("../models/image");
 
-
 router.get("/", async (req, res) => {
   try {
     const posts = await Post.find().sort({ _id: -1 });
@@ -14,6 +13,27 @@ router.get("/", async (req, res) => {
   }
 });
 
+// get unique users from posts collection
+router.get("/uniqueUsers", async (req, res) => {
+  try {
+    const users = await Post.aggregate([
+      {
+        $group: {
+          _id: "$email",
+          documents: { $push: "$$ROOT" },
+        },
+      },
+      {
+        $replaceRoot: {
+          newRoot: { $arrayElemAt: ["$documents", 0] },
+        },
+      },
+    ]);
+    res.json(users);
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+});
 
 // post new comment route
 router.post("/comment/:id/comment", getPost, async (req, res) => {
@@ -41,19 +61,19 @@ router.get("/singlePost/:id", getPost, (req, res) => {
   //try to get post and log error if there is one
   try {
     res.json(res.post);
-  }catch (e) {
+  } catch (e) {
     res.status(500).json({ message: e.message });
   }
 });
 // get all comments for a single post
-router.get('/comment/:id/comments', async (req, res) => {
+router.get("/comment/:id/comments", async (req, res) => {
   try {
-    const comments = await Post.findById(req.params.id).populate('comments')
-    res.json(comments.comments)
-  }catch (e) {
+    const comments = await Post.findById(req.params.id).populate("comments");
+    res.json(comments.comments);
+  } catch (e) {
     res.status(500).json({ message: e.message });
   }
-})
+});
 
 // get category posts given category
 router.get("/category/:category", async (req, res) => {
@@ -119,9 +139,6 @@ router.delete("/delete/:id", getPost, async (req, res) => {
   }
 });
 
-
-
-
 //delete comment
 router.delete("/comment/:id/comment/:commentId", async (req, res) => {
   try {
@@ -136,7 +153,6 @@ router.delete("/comment/:id/comment/:commentId", async (req, res) => {
   }
 });
 
-
 async function getPost(req, res, next) {
   let post;
   try {
@@ -150,7 +166,6 @@ async function getPost(req, res, next) {
   res.post = post;
   next();
 }
-
 
 // // add images routes
 // router.post("/image", async (req, res) => {
