@@ -3,8 +3,9 @@ const app = express()
 const mongoose = require('mongoose')
 var cors = require('cors')
 var multer  = require('multer')
-//mongodb+srv://srikanth:CKjiU8pBgJk5t8fi@blogspace.q2wx0rx.mongodb.net/?retryWrites=true&w=majority?directConnection=true
-mongoose.connect('mongodb+srv://srikanth:CKjiU8pBgJk5t8fi@blogspace.q2wx0rx.mongodb.net/?retryWrites=true')
+require("dotenv").config();
+console.log(process.env);
+mongoose.connect( process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 app.use(cors())
 
 const db = mongoose.connection
